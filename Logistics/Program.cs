@@ -1,3 +1,4 @@
+using Amazon.Util.Internal.PlatformServices;
 using Logistics.DBContext;
 using Logistics.Models;
 using Logistics.Services;
@@ -19,7 +20,7 @@ builder.Services.Configure<MongoDBSettings>(
 //builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 //            new MongoClient(builder.Configuration.GetValue<string>("OrdersDatabase:ConnectionString")));
 
-builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddSingleton<IOrderService, OrderService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -38,6 +39,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseWebSockets();
+
+app.UseWebSocketMiddleware();
 
 app.MapControllers();
 
