@@ -9,23 +9,18 @@ using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.Configure<MongoDBSettings>(
     builder.Configuration.GetSection("OrdersDatabase"));
-
-//builder.Services.AddSingleton<IMongoDBSettings>(sp =>
-//            sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
-
-//builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
-//            new MongoClient(builder.Configuration.GetValue<string>("OrdersDatabase:ConnectionString")));
 
 builder.Services.AddSingleton<IOrderService, OrderService>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//PostgreSQL
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddScoped<IPostgreService, PostgreService>();
 
 var app = builder.Build();
 
@@ -40,8 +35,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+// WebSockets
 app.UseWebSockets();
-
 app.UseWebSocketMiddleware();
 
 app.MapControllers();
