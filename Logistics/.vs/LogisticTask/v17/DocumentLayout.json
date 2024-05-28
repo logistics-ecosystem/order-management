@@ -1,9 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Oleksandr\\source\\repos\\order-management\\LogisticTask\\",
+  "WorkspaceRootPath": "C:\\Users\\Oleksandr\\source\\repos\\order-management\\Logistics\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Oleksandr\\source\\repos\\order-management\\Logistics\\Logistics.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Oleksandr\\source\\repos\\order-management\\Logistics\\Logistics.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Logistics.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,12 +25,12 @@
               "DocumentIndex": 0,
               "Title": "Logistics.csproj",
               "DocumentMoniker": "C:\\Users\\Oleksandr\\source\\repos\\order-management\\Logistics\\Logistics.csproj",
-              "RelativeDocumentMoniker": "..\\Logistics\\Logistics.csproj",
+              "RelativeDocumentMoniker": "Logistics.csproj",
               "ToolTip": "C:\\Users\\Oleksandr\\source\\repos\\order-management\\Logistics\\Logistics.csproj",
-              "RelativeToolTip": "..\\Logistics\\Logistics.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "RelativeToolTip": "Logistics.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-28T22:03:06.041Z",
+              "WhenOpened": "2024-05-28T22:08:00.803Z",
               "EditorCaption": ""
             }
           ]
