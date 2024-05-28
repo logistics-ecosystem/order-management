@@ -1,14 +1,10 @@
-using Amazon.Util.Internal.PlatformServices;
 using Logistics.DBContext;
-using Logistics.Models;
 using Logistics.Services;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//MongoDB
 builder.Services.Configure<MongoDBSettings>(
     builder.Configuration.GetSection("OrdersDatabase"));
 

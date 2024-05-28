@@ -1,5 +1,6 @@
 ﻿using Logistics.DBContext;
 using Logistics.Models;
+using Logistics.DTO;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver.Linq;
 using MongoDB.Driver;

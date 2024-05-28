@@ -7,7 +7,7 @@ using Logistics.Services;
 public class WebSocketMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly string _accessToken;
+    private readonly string? _accessToken;
     private readonly IOrderService _orderService;
 
     public WebSocketMiddleware(RequestDelegate next, IConfiguration options, IOrderService orderService)
@@ -64,6 +64,7 @@ public class WebSocketMiddleware
                 }
                 catch (ArgumentNullException ex)
                 {
+                    Console.WriteLine($"{ex.Message}");
                     await webSocket.CloseAsync(WebSocketCloseStatus.PolicyViolation, "Invalid access token", CancellationToken.None);
                     return;
                 }

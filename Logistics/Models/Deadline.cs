@@ -6,8 +6,8 @@ namespace Logistics.Models
     public class Deadline
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        [BsonRepresentation(BsonType.String)]
+        public Guid Id { get; set; }
 
         [BsonElement("dateTimeTo")]
         public DateTime DateTimeTo { get; set; }

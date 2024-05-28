@@ -1,4 +1,5 @@
 ﻿using Logistics.Models;
+using Logistics.DTO;
 
 namespace Logistics.Services
 {

@@ -1,16 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using LogisticTask.DTO;
-using LogisticTask.Models;
+﻿using Logistics.DTO;
+using Logistics.Models;
 
-namespace LogisticTask.Services
+namespace Logistics.Services
 {
     public interface IPostgreService
     {
-
-        public Task<Order> GetOrderById(Guid id);
+        public Task<Order?> GetOrderById(Guid id);
         public Task AddNewOrder(OrderDTO orderDto);
         public Task<List<Order>> GetOrdersByFilters(OrderQuery orderQuery);
-        public  Task<List<AcceptedOrder>> GetAcceptedOrders(
+        public Task<List<AcceptedOrder>> GetAcceptedOrders(
             Guid? uniqueId,
             DateTime? dateTimeAccepted,
             int? orderId,

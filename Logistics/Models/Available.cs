@@ -9,22 +9,22 @@ namespace Logistics.Models
         [BsonRepresentation(BsonType.String)]
         public Guid UniqueId { get; set; } = Guid.NewGuid();
         [BsonElement("addressFrom")]
-        public string AddressFrom { get; set; }
+        public string AddressFrom { get; set; } = string.Empty;
         [BsonElement("addressTo")]
-        public string AddressTo { get; set; }
+        public string AddressTo { get; set; } = string.Empty;
         [BsonElement("dateTimeFrom")]
         public DateTime DateTimeFrom { get; set; }
         [BsonElement("dateTimeTo")]
         public DateTime DateTimeTo { get; set; }
 
         [BsonElement("frachtType")]
-        public string FrachtType { get; set; }
+        public string FrachtType { get; set; } = string.Empty;
 
         [BsonElement("distance")]
         public int Distance { get; set; }
 
         [BsonElement("trunkType")]
-        public string TrunkType { get; set; }
+        public string TrunkType { get; set; } = string.Empty;
 
         [BsonElement("weight")]
         public double Weight { get; set; }
@@ -36,7 +36,7 @@ namespace Logistics.Models
         public double Height { get; set; }
 
         [BsonElement("loadingType")]
-        public string LoadingType { get; set; }
+        public string LoadingType { get; set; } = string.Empty;
 
         [BsonElement("temperature")]
         public int Temperature { get; set; }
@@ -45,6 +45,6 @@ namespace Logistics.Models
         public double Price { get; set; }
 
         [BsonElement("contactInfo")]
-        public string ContactInfo { get; set; }
+        public string ContactInfo { get; set; } = string.Empty;
     }
 }

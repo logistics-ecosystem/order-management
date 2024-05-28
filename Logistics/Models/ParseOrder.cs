@@ -1,24 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
-
-namespace Logistics.Models
+﻿namespace Logistics.Models
 {
     public class ParseOrder
     {
-        public string AddressFrom { get; set; }
-        public string AddressTo { get; set; }
+        public string AddressFrom { get; set; } = string.Empty;
+        public string AddressTo { get; set; } = string.Empty;
         public DateTime DateTimeFrom { get; set; }
         public DateTime DateTimeTo { get; set; }
-        public string FrachtType { get; set; }
+        public string FrachtType { get; set; } = string.Empty;
         public int Distance { get; set; }
-        public string TrunkType { get; set; }
+        public string TrunkType { get; set; } = string.Empty;
         public double Weight { get; set; }
         public double LoadingMetre { get; set; }
         public double Height { get; set; }
-        public string LoadingType { get; set; }
+        public string LoadingType { get; set; } = string.Empty;
         public int Temperature { get; set; }
         public double Price { get; set; }
-        public string ContactInfo { get; set; }
+        public string ContactInfo { get; set; } = string.Empty;
 
         public Boolean IsDataInvalid()
         {
@@ -55,24 +52,13 @@ namespace Logistics.Models
                 ContactInfo = ContactInfo
             };
         }
-
         
         public override string ToString()
         {
-            return AddressFrom + " | " + 
-                AddressTo + " | " + 
-                DateTimeFrom.ToString() + " | " + 
-                DateTimeTo.ToString() + " | " + 
-                FrachtType + " | " + 
-                Distance + " | " + 
-                TrunkType + " | " +
-                Weight + " | " +
-                LoadingMetre + " | " +
-                Height + " | " +
-                LoadingType + " | " +
-                Temperature + " | " +
-                Price + " | " +
-                ContactInfo;
+            return $"{AddressFrom}, {AddressTo}, {DateTimeFrom.ToString()}, " +
+                $"{DateTimeTo.ToString()}, {FrachtType}, {Distance}, {TrunkType}, " +
+                $"{Weight}, {LoadingMetre}, {Height}, {LoadingType}, {Temperature}" +
+                $"{Price}, {ContactInfo}";            
         }
     }
 }

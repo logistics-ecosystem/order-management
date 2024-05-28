@@ -1,17 +1,12 @@
-﻿using LogisticTask.Data;
-using LogisticTask.DTO;
-using Microsoft.AspNetCore.Mvc;
-using LogisticTask.Models;
-using LogisticTask.Services;
+﻿using Logistics.DBContext;
+using Logistics.DTO;
+using Logistics.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Xml;
-using System;
 
-namespace LogisticTask.Services
+namespace Logistics.Services
 {
     public class PostgreService : IPostgreService
     {
-
         private readonly DataContext _context;
         public PostgreService(DataContext dataContext)
         {
@@ -19,7 +14,6 @@ namespace LogisticTask.Services
         }
         public async Task AddNewOrder(OrderDTO orderDto)
         {
-
             var newOrder = new Order
             {
                 AddressFrom = orderDto.AddressFrom,
@@ -38,7 +32,7 @@ namespace LogisticTask.Services
                 ContactInfo = orderDto.ContactInfo
             };
 
-            _context.Orders.Add(newOrder);
+            await _context.Orders.AddAsync(newOrder);
             await _context.SaveChangesAsync();
         }
 
@@ -46,36 +40,23 @@ namespace LogisticTask.Services
         {
             var query = _context.AcceptedOrdersHistory.AsQueryable();
 
-            if (uniqueId.HasValue)
-            {
+            if (uniqueId.HasValue)            
                 query = query.Where(x => x.UniqueId == uniqueId.Value);
-            }
+            
+            if (dateTimeAccepted.HasValue)            
+                query = query.Where(x => x.DateTimeAccepted == dateTimeAccepted.Value);           
 
-            if (dateTimeAccepted.HasValue)
-            {
-                query = query.Where(x => x.DateTimeAccepted == dateTimeAccepted.Value);
-            }
+            if (orderId.HasValue)            
+                query = query.Where(x => x.OrderId == orderId.Value);            
 
-            if (orderId.HasValue)
-            {
-                query = query.Where(x => x.OrderId == orderId.Value);
-            }
-
-            if (carId.HasValue)
-            {
+            if (carId.HasValue)            
                 query = query.Where(x => x.CarId == carId.Value);
-            }
-
-            var acceptedOrders = await query.ToListAsync();
-            return acceptedOrders;
+                        
+            return await query.ToListAsync();
         }
 
-        public async Task<Order> GetOrderById(Guid id)
-        {
-            var order = await _context.Orders.FirstOrDefaultAsync(o => o.UniqueId == id);
-
-            return order;
-        }
+        public async Task<Order?> GetOrderById(Guid id) =>
+            await _context.Orders.FirstOrDefaultAsync(o => o.UniqueId == id);
 
         public async Task<List<Order>> GetOrdersByFilters(OrderQuery query)
         {
@@ -124,7 +105,6 @@ namespace LogisticTask.Services
                 orders = orders.Where(o => o.ContactInfo.Contains(query.ContactInfo));
 
             return await orders.ToListAsync();
-        }
-    
+        }    
     }
 }

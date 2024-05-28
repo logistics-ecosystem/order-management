@@ -1,4 +1,4 @@
-﻿namespace LogisticTask.DTO
+﻿namespace Logistics.DTO
 {
     public class OrderQuery
     {

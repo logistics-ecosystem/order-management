@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Diagnostics.Metrics;
-using LogisticTask.Models;
+using Logistics.Models;
 
-namespace LogisticTask.Data
+namespace Logistics.DBContext
 {
     public class DataContext : DbContext
     {

@@ -1,16 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LogisticTask.Models
+namespace Logistics.Models
 {
     public class AcceptedOrder
     {
         [Key]
-        public Guid UniqueId { get; set; } // Генерация UUID
-
-
+        public Guid UniqueId { get; set; }
         public DateTime DateTimeAccepted { get; set; }
-
-        public Order Orders { get; set; }
+        public Order Orders { get; set; } = new Order();
         public int OrderId { get; set; }
 
         //public Car Cars { get; set; }
