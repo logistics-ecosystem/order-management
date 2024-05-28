@@ -2,8 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/Logistics/appsettings.json
 /.vs
-/LogisticTask/.vs
-/LogisticTask/bin/Debug/net8.0
-/LogisticTask/obj
-/LogisticTask/Migrations
+/Logistics/.vs/Logistics
+/Logistics/.vs/Logistics
