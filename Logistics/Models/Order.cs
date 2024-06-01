@@ -19,6 +19,8 @@ namespace Logistics.Models
         public string LoadingType { get; set; } = string.Empty;
         public int Temperature { get; set; }
         public float Price { get; set; }
-        public string ContactInfo { get; set; } = string.Empty;        
+        public string ContactInfo { get; set; } = string.Empty;
+
+        public AcceptedOrder AcceptedOrder { get; set; } = new AcceptedOrder();
     }
 }

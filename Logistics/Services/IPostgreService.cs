@@ -11,7 +11,7 @@ namespace Logistics.Services
         public Task<List<AcceptedOrder>> GetAcceptedOrders(
             Guid? uniqueId,
             DateTime? dateTimeAccepted,
-            int? orderId,
+            Guid? orderId,
             Guid? carId
             );
     }

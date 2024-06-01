@@ -1,0 +1,68 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Logistics.Protos";
+
+package todoanalytics;
+
+service ToDoAnalytics {
+  rpc GetAcceptedOrders(GetAcceptedOrdersRequest) returns (GetAcceptedOrdersResponse) {}
+
+  rpc GetOrdersByFilters(GetOrdersByFiltersRequest) returns (GetOrdersByFiltersResponse) {}
+
+}
+
+message GetAcceptedOrdersRequest {
+  optional string dateTimeAccepted = 1;
+  optional string orderId = 2;
+  optional string carId = 3;
+}
+
+message GetAcceptedOrdersResponse {
+  repeated AcceptedOrderResponse orders = 1;
+}
+
+message GetOrdersByFiltersRequest {
+  optional string addressFrom = 1;
+  optional string addressTo = 2;
+  optional string dateTimeFrom = 3;
+  optional string dateTimeTo = 4;
+  optional string frachtType = 5;
+  optional int32 distance = 6;
+  optional string trunkType = 7;
+  optional double weight = 8;
+  optional double loadingMetre = 9;
+  optional double height = 10;
+  optional string loadingType = 11;
+  optional int32 temperature = 12;
+  optional float price = 13;
+  optional string contactInfo = 14;
+}
+
+message GetOrdersByFiltersResponse {
+  repeated OrderResponse orders = 1;
+}
+
+message OrderResponse {
+  string uniqueId = 1;
+  string addressFrom = 2;
+  string addressTo = 3;
+  string dateTimeFrom = 4;
+  string dateTimeTo = 5;
+  string frachtType = 6;
+  int32 distance = 7;
+  string trunkType = 8;
+  double weight = 9;
+  double loadingMetre = 10;
+  double height = 11;
+  string loadingType = 12;
+  int32 temperature = 13;
+  float price = 14;
+  string contactInfo = 15;
+}
+
+message AcceptedOrderResponse {
+  string dateTimeAccepted = 2;
+  string orderId = 3;
+  string carId = 4;
+}
+

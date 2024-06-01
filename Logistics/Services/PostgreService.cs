@@ -36,7 +36,7 @@ namespace Logistics.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<AcceptedOrder>> GetAcceptedOrders(Guid? uniqueId, DateTime? dateTimeAccepted, int? orderId, Guid? carId)
+        public async Task<List<AcceptedOrder>> GetAcceptedOrders(Guid? uniqueId, DateTime? dateTimeAccepted, Guid? orderId, Guid? carId)
         {
             var query = _context.AcceptedOrdersHistory.AsQueryable();
 

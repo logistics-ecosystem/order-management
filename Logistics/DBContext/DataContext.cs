@@ -18,7 +18,7 @@ namespace Logistics.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Order>().HasOne(o => o.AcceptedOrder).WithOne(ao => ao.Orders).HasForeignKey<AcceptedOrder>(ao => ao.OrderId);
+            modelBuilder.Entity<Order>().HasOne(o => o.AcceptedOrder).WithOne(ao => ao.Orders).HasForeignKey<AcceptedOrder>(ao => ao.OrderId);
 
             /*modelBuilder.Entity<Order>(entity =>
             {
