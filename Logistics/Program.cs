@@ -6,13 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 //MongoDB
 builder.Services.Configure<MongoDBSettings>(
-    builder.Configuration.GetSection("OrdersDatabase"));
+builder.Configuration.GetSection("OrdersDatabase"));
 
 builder.Services.AddSingleton<IOrderService, OrderService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddGrpc();
 
 //PostgreSQL
 builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
@@ -30,6 +31,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.MapGrpcService<ToDoAlgorithmService>();
 
 // WebSockets
 app.UseWebSockets();
