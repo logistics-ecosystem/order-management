@@ -9,7 +9,7 @@ namespace Logistics.Models
         [BsonRepresentation(BsonType.String)]
         public Guid Id { get; set; }
 
-        [BsonElement("dateTimeTo")]
-        public DateTime DateTimeTo { get; set; }
+        [BsonElement("dateTimeFrom")]
+        public DateTime DateTimeFrom { get; set; }
     }
 }

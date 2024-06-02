@@ -1,4 +1,5 @@
-﻿using Logistics.DBContext;
+﻿using Grpc.Core;
+using Logistics.DBContext;
 using Logistics.DTO;
 using Logistics.Models;
 using Microsoft.EntityFrameworkCore;
@@ -12,31 +13,48 @@ namespace Logistics.Services
         {
             _context = dataContext;
         }
-        public async Task AddNewOrder(OrderDTO orderDto)
-        {
-            var newOrder = new Order
-            {
-                AddressFrom = orderDto.AddressFrom,
-                AddressTo = orderDto.AddressTo,
-                DateTimeFrom = orderDto.DateTimeFrom,
-                DateTimeTo = orderDto.DateTimeTo,
-                FrachtType = orderDto.FrachtType,
-                Distance = orderDto.Distance,
-                TrunkType = orderDto.TrunkType,
-                Weight = orderDto.Weight,
-                LoadingMetre = orderDto.LoadingMetre,
-                Height = orderDto.Height,
-                LoadingType = orderDto.LoadingType,
-                Temperature = orderDto.Temperature,
-                Price = orderDto.Price,
-                ContactInfo = orderDto.ContactInfo
-            };
 
-            await _context.Orders.AddAsync(newOrder);
+        public async Task AcceptOrder(Guid orderId, Guid carId)
+        {
+            if (await GetOrderById(orderId) is null)
+            {
+                throw new Exception("No Order with such Id");                
+            }
+
+            await _context.AcceptedOrdersHistory.AddAsync(new AcceptedOrder 
+            { 
+                CarId = carId, 
+                OrderId = orderId,
+                DateTimeAccepted = DateTime.Now
+            });
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<AcceptedOrder>> GetAcceptedOrders(Guid? uniqueId, DateTime? dateTimeAccepted, int? orderId, Guid? carId)
+        public async Task AddNewOrder(Order order)
+        {
+            //var newOrder = new Order
+            //{
+            //    AddressFrom = orderDto.AddressFrom,
+            //    AddressTo = orderDto.AddressTo,
+            //    DateTimeFrom = orderDto.DateTimeFrom,
+            //    DateTimeTo = orderDto.DateTimeTo,
+            //    FrachtType = orderDto.FrachtType,
+            //    Distance = orderDto.Distance,
+            //    TrunkType = orderDto.TrunkType,
+            //    Weight = orderDto.Weight,
+            //    LoadingMetre = orderDto.LoadingMetre,
+            //    Height = orderDto.Height,
+            //    LoadingType = orderDto.LoadingType,
+            //    Temperature = orderDto.Temperature,
+            //    Price = orderDto.Price,
+            //    ContactInfo = orderDto.ContactInfo
+            //};
+
+            await _context.Orders.AddAsync(order);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<AcceptedOrder>> GetAcceptedOrders(Guid? uniqueId, DateTime? dateTimeAccepted, Guid? orderId, Guid? carId)
         {
             var query = _context.AcceptedOrdersHistory.AsQueryable();
 
@@ -52,7 +70,7 @@ namespace Logistics.Services
             if (carId.HasValue)            
                 query = query.Where(x => x.CarId == carId.Value);
                         
-            return await query.ToListAsync();
+            return await query.ToListAsync();            
         }
 
         public async Task<Order?> GetOrderById(Guid id) =>

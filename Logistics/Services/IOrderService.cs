@@ -8,7 +8,7 @@ namespace Logistics.Services
         Task AddNewAvailableOrderAsync(Available order);
         Task<List<Deadline>> CheckDeadlineOrdersAsync();
         Task<List<Available>> GetAllOrdersAsync(OrderQuery query);        
-        Task<Available> GetOrderByIdAsync(Guid id);
+        Task<Available?> GetOrderByIdAsync(Guid id);
         Task DeleteOrderByIdAsync(Guid id);
     }
 }

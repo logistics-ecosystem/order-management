@@ -6,12 +6,13 @@ namespace Logistics.Services
     public interface IPostgreService
     {
         public Task<Order?> GetOrderById(Guid id);
-        public Task AddNewOrder(OrderDTO orderDto);
+        public Task AddNewOrder(Order order);
         public Task<List<Order>> GetOrdersByFilters(OrderQuery orderQuery);
+        public Task AcceptOrder(Guid orderId, Guid carId);
         public Task<List<AcceptedOrder>> GetAcceptedOrders(
             Guid? uniqueId,
             DateTime? dateTimeAccepted,
-            int? orderId,
+            Guid? orderId,
             Guid? carId
             );
     }

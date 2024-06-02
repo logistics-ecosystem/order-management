@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option csharp_namespace = "Logistics.Protos";
+
+package usermanagement;
+
+service UserManagement {
+	rpc GetOrderInfo(OrderInfoRequest) returns (OrderInfoResponse) {}
+
+	rpc AcceptOrder(AcceptOrderRequest) returns (AcceptOrderResponse) {}
+
+	rpc SetOrderUnavailable(SetOrderUnavailableRequest) returns (SetOrderUnavailableResponse) {}
+}
+
+// GetOrderInfo
+message OrderInfoRequest {
+	string uniqueId = 1;
+}
+
+message OrderInfoResponse {	
+	string addressFrom = 1;
+	string addressTo = 2;
+	string dateTimeFrom = 3;
+	string dateTimeTo = 4;
+	string frachtType = 5;
+	int32 distance = 6;
+	string trunkType = 7;
+	double weight = 8;
+	double loadingMetre = 9;
+	double height = 10;
+	string loadingType = 11;
+	int32 temperature = 12;
+	float price = 13;
+	string contactInfo = 14;
+}
+
+// AcceptOrder
+message AcceptOrderRequest {	
+	optional string orderId = 1;
+	optional string carId = 2;
+}
+
+message AcceptOrderResponse {}
+
+// SetOrderUnavailable
+message SetOrderUnavailableRequest {
+	string uniqueId = 1;
+}
+
+message SetOrderUnavailableResponse {}
